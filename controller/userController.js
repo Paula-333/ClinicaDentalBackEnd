@@ -55,7 +55,7 @@ module.exports.login = async (req,res,next) => {
              if (err) {
                 return res.status(401).send({
                     ok: false,
-                   message: 'Token no valido'
+                   message: 'Token incorrecto'
                 });
              } else {
                  req.token = token
