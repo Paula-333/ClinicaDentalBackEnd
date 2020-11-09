@@ -1,8 +1,8 @@
 
-const {User,sequelize} = require('../models/user.js');
+const {User} = require('../models/user.js');
 // const bcrypt = require('bcrypt');
 const secret = 'migatitobonito';
-const auth = require('../middlewares/auth');
+const auth = require('../middleware/auth.js');
 
 
   
@@ -10,7 +10,7 @@ const auth = require('../middlewares/auth');
 
 
  module.exports.createUser = async (req, res) => {
-    
+      
     try {
         await User.create({
             id: req.body.id,

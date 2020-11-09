@@ -1,4 +1,4 @@
-const {Cita,sequelize}= require('../models/cita.js');
+const {Cita}= require('../models/index.js');
 
 
 ////...::CREAR CITA::...////
@@ -10,7 +10,7 @@ module.exports.createCita = async (req, res) => {
     try {
         await Cita.create ({
             idUser: req.body.idUser,
-            fechaCita: returnDate.fechaCita,
+            fechaCita: returnDate,
             horaCita: req.body.horaCita,
             servicio: req.body.servicio,
             status: req.body.status,
