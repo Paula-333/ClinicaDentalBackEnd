@@ -52,7 +52,7 @@ module.exports.findCita = async (req,res) => {
 
 module.exports.remove = async (req,res) => {
     await Cita.destroy({
-        where: {Email:req.body.citaRemove},
+        where: {email:req.body.email},
     }).then(borrado => {res.send('borrado');
 });
 }
