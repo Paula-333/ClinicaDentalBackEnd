@@ -2,9 +2,9 @@ const express = require('express');
 //importamos librerias
 const mysql = require('mysql2/promise');
 //const json  = require('sequelize/types');
-const userRouter = require('./routers/userRouter.js')
-const citaRouter = require('./routers/citaRouter.js')
-const historialRouter = require('./routers/historialRouter.js')
+const userRouter = require('./route/userRouter.js')
+const citaRouter = require('./route/citaRouter.js')
+const historialRouter = require('./route/historialRouter.js')
 
 
 const app = express();
