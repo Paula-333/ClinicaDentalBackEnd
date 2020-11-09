@@ -1,5 +1,5 @@
 //const jason = require('sequelize/types');
-const {User,sequelize} = require('../models/user');
+const {User,sequelize} = require('../models/user.js');
 // const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const secret = 'migatitobonito';

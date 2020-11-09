@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     
     static associate(models) {
       this.hasMany(models.Cita);
-      //this.hasOne(models.Historal);
+      this.hasOne(models.Historal);
     }
   };
   User.init({

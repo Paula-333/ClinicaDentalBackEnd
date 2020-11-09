@@ -1,31 +1,32 @@
-const Cita = require('../models/user.js');
+const {Cita,sequelize}= require('../models/cita.js');
 
 
 ////...::CREAR CITA::...////
 
 module.exports.createCita = async (req, res) => {
+
+    const returnDate = new Date();
+     //returnDate.setDate(returnDate.getDate() + 2)
     try {
-        const returnDate = new Date();
-        //returnDate.setDate(returnDate.getDate() + 2)
-        const Cita = await Cita.create({
-            id_user: req.body.id_user,
-            hora_cita: returnDate,
-            servicio: req.body.STRING,
-            sala: req.body.STRING,
-            status: req.body.STRING,
-            precio: req.body.INTEGER,
-            concluida: req.body.BOOLEAN
-        });
-            //const cita = await order.addOrder(req.body.products)
-            
-            res.send({
-                message: 'Order successfully completed'
+        await Cita.create ({
+            idUser: req.body.idUser,
+            fechaCita: returnDate.fechaCita,
+            horaCita: req.body.horaCita,
+            servicio: req.body.servicio,
+            status: req.body.status,
+            sala: req.body.sala,
+            precio: req.body.precio,
+            concluida: req.body.concluida
+        }).then(cita => {res.json(cita);
+            res.json({
+                message: 'Tu cita se ha creado'
             })
+        });
         
     } catch (error) {
         console.error(error);
         res.status(500).send({
-            message: 'There was a problem+ trying to create the order'
+            message: 'No se ha podido crear la cita'
         })
     }
 };          
@@ -40,7 +41,7 @@ module.exports.findCita = async (req,res) => {
         .catch(error => {
             console.error(error);
             res.status(500).send({
-                message: 'Ha habido un problema localizando al usuario'
+                message: 'Ha habido un problema con tu cita'
             })
         })
 };
