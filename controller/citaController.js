@@ -1,4 +1,4 @@
-const Cita = require('../models/index.js');
+const Cita = require('../models/user.js');
 
 
 ////...::CREAR CITA::...////

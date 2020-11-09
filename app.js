@@ -8,7 +8,7 @@ const historialRouter = require('./route/historialRouter.js')
 
 
 const app = express();
-const PORT = 3330;
+const PORT = 3340;
 
 const conn = mysql.createConnection({
     host: 'localhost',

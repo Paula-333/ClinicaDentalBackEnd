@@ -1,5 +1,5 @@
 //const jason = require('sequelize/types');
-const {User,sequelize} = require('../models/index.js');
+const {User,sequelize} = require('../models/user');
 // const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const secret = 'migatitobonito';
@@ -10,7 +10,7 @@ const secret = 'migatitobonito';
 
 
  module.exports.createUser = async (req, res) => {
-     const users = req.body
+     //const users = req.body
     try {
         await User.create({
             id: req.body.id,
