@@ -67,5 +67,11 @@ module.exports.login = async (req,res,next) => {
 
 ////////////....:::LOGOUT:::....////////////
 
-
+/*module.exports.logout = async (req,res) => {
+    req.logout();
+    res.status(200).json({
+    status: 'Bye!'
+ });
+}
+*/
 
