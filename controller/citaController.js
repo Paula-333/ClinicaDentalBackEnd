@@ -31,20 +31,21 @@ module.exports.createCita = async (req, res) => {
     }
 };          
 
-////...::BUSCAR CITA::...////
+////...::BUSCAR CITA PENDIENTE::...////
 
 
 module.exports.findCita = async (req,res) => {
-    let idCita = req.body.id;
-    Cita.query(`SELECT * from Users WHERE id = ${idCita}`)
-        .then(cita => res.send(cita))
-        .catch(error => {
-            console.error(error);
-            res.status(500).send({
-                message: 'Ha habido un problema con tu cita'
-            })
+    Cita.findAll({
+        where: {status: 'Pendiente', isUser: req.params.id},
+    }).then(appointments => {
+        res.send(appointments);
+    }).catch(error => {
+        res.status(500).send({
+            message: 'No se ha podido mostrar citas pendientes'
         })
-};
+    })
+}
+
 
 ////...::BORRAR CITA::...////
 
