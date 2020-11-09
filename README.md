@@ -1,10 +1,6 @@
 ### ClinicaDentalBackEnd
 
-Es un proyecto de BackEnd de citas en una clinica dental.
-
-#### Introducción:
-Este proyecto de una clinica dental que permite el registro de un cliente, gestion de citas y login y logout.
-El cliente puede acceder a sus citas o anularlas.
+Es un proyecto de backEnd de destion de citas de una clinica dental, donde el cliente se puede registrar, ver sus citas pendientes, crear una cita y anularla.
 
 #### Tecnologías:
 En este proyecto he usado NodeJS, Express y Sequelize.
@@ -18,4 +14,5 @@ En este proyecto he usado NodeJS, Express y Sequelize.
 - Eliminar cita:/ http://localhost:3345/api/cita/remove
 
 #### Relaciones entre tablas:
+![Screenshot](Tablas.png)
 
