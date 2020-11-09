@@ -31,22 +31,6 @@ app.use(function(req, res, next) { //para evitar el error CORS
     next();
 });
 
-/*app.get('/', async(req, res)=>{
-    try{
-        const db = await conn;
-        const [citas] = await db.execute('SELECT * FROM citas');
-        console.log(citas);
-        res.json(citas);
-    }catch (error){
-        console.error(error);
-        res.status(500).send({
-            message:'Error en citas'
-        });
-    }
-
-});*/
-
-
 
 //Enrutado a endpoints 
 

@@ -6,7 +6,7 @@ const {Cita,sequelize}= require('../models/cita.js');
 module.exports.createCita = async (req, res) => {
 
     const returnDate = new Date();
-     //returnDate.setDate(returnDate.getDate() + 2)
+     
     try {
         await Cita.create ({
             idUser: req.body.idUser,
@@ -57,4 +57,3 @@ module.exports.remove = async (req,res) => {
 });
 }
 
-//module.exports = Cita;

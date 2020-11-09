@@ -1,4 +1,4 @@
-//const jason = require('sequelize/types');
+
 const {User,sequelize} = require('../models/user.js');
 // const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -10,7 +10,7 @@ const secret = 'migatitobonito';
 
 
  module.exports.createUser = async (req, res) => {
-     //const users = req.body
+    
     try {
         await User.create({
             id: req.body.id,
@@ -38,7 +38,7 @@ const secret = 'migatitobonito';
 };          
 
 ////////////....:::LOGIN:::....////////////
-
+/*
 module.exports.login = (req, res, next)=>{
     
     const {email,password} = req.body;
@@ -50,7 +50,7 @@ module.exports.login = (req, res, next)=>{
     const token = jwt.sign({user:data.id}, secret, {expiresIn: 60 * 60 *24});
     res.json({token: token, mensaje: 'login correcto'})
 
-    //validar token//Esto creo que es asi no me da ningun error.
+    //validar token//
 
     jwt.verify(token, secret, function(err, token) {
         if (err) {
@@ -65,21 +65,8 @@ module.exports.login = (req, res, next)=>{
 
     });
 }
-
+*/
 ////////////....:::LOGOUT:::....////////////
 
 
 
-/*module.exports.showId = async (req,res) => {
-    let idUser = req.body.id;
-    User.query(`SELECT * from Users WHERE id = ${idUser}`)
-        .then(users => res.send(users))
-        .catch(error => {
-            console.error(error);
-            res.status(500).send({
-                message: 'Ha habido un problema localizando al usuario'
-            })
-        })
-}*/
-
-//module.exports = User;
