@@ -1,8 +1,8 @@
 
 const {User,sequelize} = require('../models/user.js');
 // const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const secret = 'migatitobonito';
+const auth = require('../middlewares/auth');
 
 
   
@@ -38,34 +38,33 @@ const secret = 'migatitobonito';
 };          
 
 ////////////....:::LOGIN:::....////////////
-/*
-module.exports.login = (req, res, next)=>{
+
+//no tengo idea de si funciona o esta bien
+
+
+module.exports.login = async (req,res,next) => {
     
-    const {email,password} = req.body;
-    if (!email || !password ) return res.json({error:'No encuentra el usuario'})
-
-    const data = User.find (e=> e.email === email && e.password === password);
-    if (!data) return res.json ({error: 'No es correcto'})
-
-    const token = jwt.sign({user:data.id}, secret, {expiresIn: 60 * 60 *24});
-    res.json({token: token, mensaje: 'login correcto'})
-
-    //validar token//
-
-    jwt.verify(token, secret, function(err, token) {
-        if (err) {
-          return res.status(401).send({
-            ok: false,
-            message: 'Token inválido'
-          });
-        } else {
-          req.token = token
-          next()
-        }
-
-    });
+    const token = jwt.sign({ 
+        email: 'email', 
+        password: 'password' 
+    }, secret, { expiresIn: 60 * 60 * 24 });
+        res.json({ token: token, message: 'Login correcto' });
+    
+        //validacion (?)
+        jwt.verify(token, secret, function (err, token) {
+             if (err) {
+                return res.status(401).send({
+                    ok: false,
+                   message: 'Token no valido'
+                });
+             } else {
+                 req.token = token
+                 next()
+             }
+     })
 }
-*/
+
+
 ////////////....:::LOGOUT:::....////////////
 
 
