@@ -1,4 +1,4 @@
-const {Historial} = require('../models/historial.js');
+const {Historial} = require('../models/index.js');
 
 
     module.exports.historial = async (req, res) => {

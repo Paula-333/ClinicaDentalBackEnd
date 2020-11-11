@@ -1,5 +1,5 @@
 
-const {User} = require('../models/user.js');
+const {User} = require('../models/index.js');
 // const bcrypt = require('bcrypt');
 const secret = 'migatitobonito';
 const auth = require('../middleware/auth.js');
