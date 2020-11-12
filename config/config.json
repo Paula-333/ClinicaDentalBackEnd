@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "123456789",
+    "password": "c8c7dacd",
     "database": "clinica_dental_citas",
     "host": "127.0.0.1",
     "dialect": "mysql"
