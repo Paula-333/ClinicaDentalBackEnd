@@ -33,13 +33,13 @@ module.exports.createCita = async (req, res) => {
 
 module.exports.showAll = async (req, res) => {
      await Cita.findAll()
-    .then()
+    /*.then(citas => res.send(citas))
     .catch(error => {
         console.error(error);
         res.status(500).send({
             message: 'Ha habido un problema tratando de recuperar las citas'
         })
-    })
+    })*/
 }
 
 ////...::BUSCAR CITA PENDIENTE::...////
