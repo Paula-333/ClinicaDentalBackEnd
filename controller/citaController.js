@@ -34,12 +34,12 @@ module.exports.createCita = async (req, res) => {
 
 
 module.exports.findCita = async (req,res) => {
-    Appointment.findAll({
+    Cita.findAll({
    
         where: {
             status:'pendiente', idUser: req.params.id
         }
-    }).then(appointments => res.send(appointments))
+    }).then(cita => res.send(cita))
     .catch(error => {
         console.error(error);
         res.status(500).send(error)
