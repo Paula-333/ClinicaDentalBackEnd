@@ -32,7 +32,7 @@ module.exports.createCita = async (req, res) => {
 ////...::TODAS LAS CITAS::...////
 
 module.exports.showAll = async (req, res) => {
-    Cita.findAll()
+    await Cita.findAll()
     .then(citas => res.send(citas))
     .catch(error => {
         console.error(error);
@@ -47,7 +47,7 @@ module.exports.showAll = async (req, res) => {
 
 module.exports.findCita = async (req,res) => {
 
-    Cita.findAll({
+    await Cita.findAll({
         where: { status: 'Pendiente', idUser: req.params.id },
     }).then(citas => {
         res.send(citas);

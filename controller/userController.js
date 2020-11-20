@@ -37,7 +37,7 @@ const jwt = require('jsonwebtoken');
 
 ///////////....:::USUARIOS:::....//////////
 module.exports.allUsers = async (req,res) =>{
-    User.findAll({
+    await User.findAll({
         include: [{
             model: Cita
         }]
