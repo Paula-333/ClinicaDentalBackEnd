@@ -36,17 +36,15 @@ const jwt = require('jsonwebtoken');
 };          
 
 ///////////....:::USUARIOS:::....//////////
-module.exports.allUsers = async (req,res) =>{
-    await User.findAll({
+module.exports.allUsers = (req,res) =>{
+    User.findAll({
         include: [{
             model: Cita
         }]
     })
         .then(users => res.send(users))
         .catch(error => {
-            res.status(500).send({
-                message: 'Error con los usuarios'
-            })
+            res.status(500).send(error)
         })
 }
 ////////////....:::LOGIN:::....////////////

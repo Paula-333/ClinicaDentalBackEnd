@@ -31,8 +31,8 @@ module.exports.createCita = async (req, res) => {
 };          
 ////...::TODAS LAS CITAS::...////
 
-module.exports.showAll = async (req, res) => {
-    await Cita.findAll()
+module.exports.showAll =  (req, res) => {
+     Cita.findAll()
     .then(citas => res.send(citas))
     .catch(error => {
         console.error(error);
@@ -45,9 +45,9 @@ module.exports.showAll = async (req, res) => {
 ////...::BUSCAR CITA PENDIENTE::...////
 
 
-module.exports.findCita = async (req,res) => {
+module.exports.findCita =  (req,res) => {
 
-    await Cita.findAll({
+     Cita.findAll({
         where: { status: 'Pendiente', idUser: req.params.id },
     }).then(citas => {
         res.send(citas);
@@ -75,8 +75,8 @@ module.exports.findCita = async (req,res) => {
 
 ////...::BORRAR CITA::...////
 
-module.exports.remove = async (req,res) => {
-    await Cita.destroy({
+module.exports.remove =  (req,res) => {
+     Cita.destroy({
         where: {email:req.body.email},
     }).then(borrado => {res.send(borrado);
 });
