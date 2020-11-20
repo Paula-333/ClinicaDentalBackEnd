@@ -37,7 +37,7 @@ const jwt = require('jsonwebtoken');
 };          
 
 ///////////....:::USUARIOS:::....//////////
-module.exports.allUsers = async (req,res) =>{
+/*module.exports.allUsers = async (req,res) =>{
     await User.findAll({
         include: [{
             model: Cita
@@ -47,7 +47,7 @@ module.exports.allUsers = async (req,res) =>{
         .catch(error => {
             res.status(500).send(error)
         })
-}
+}*/
 ////////////....:::LOGIN:::....////////////
 
 module.exports.login = async (req,res,next) => {

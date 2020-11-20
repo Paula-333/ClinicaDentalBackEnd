@@ -37,7 +37,7 @@ module.exports.showAll = async (req, res) => {
     .catch(error => {
         console.error(error);
         res.status(500).send({
-            message: 'Ha habido un problema tratando de recuperar las citas'
+            message: 'Ha habido un problema tratando de recuperar las citasdcd'
         })
     })
 }
@@ -49,8 +49,8 @@ module.exports.findCita = async (req,res) => {
 
      await Cita.findAll({
         where: { status: 'Pendiente', idUser: req.params.id },
-    }).then(citas => {
-        res.send(citas);
+    }).then(cita=> {
+        res.send(cita);
     }).catch(error => {
         res.status(500).send({
             message: '¡ERROR! No se ha podido mostrar citas pendientes'
