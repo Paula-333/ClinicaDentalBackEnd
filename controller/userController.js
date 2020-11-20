@@ -1,6 +1,7 @@
 
-const {User, Sequelize} = require('../models/index.js');
-const {Op} = Sequelize
+//const {User, Sequelize} = require('../models/index.js');
+const {User,Cita} = require('../models');
+//const {Op} = Sequelize
 const jwt = require('jsonwebtoken');
 //const user = require('../models/user.js');
 //const bcrypt = require('bcrypt');
@@ -36,8 +37,8 @@ const jwt = require('jsonwebtoken');
 };          
 
 ///////////....:::USUARIOS:::....//////////
-module.exports.allUsers = (req,res) =>{
-    User.findAll({
+module.exports.allUsers = async (req,res) =>{
+    await User.findAll({
         include: [{
             model: Cita
         }]
@@ -67,7 +68,6 @@ module.exports.login = async (req,res,next) => {
             {expiresIn: '2y'})
         res.send({user,token,message: 'Correcto'});
     } catch (error) {
-        console.error(chalk.red(error))
         res.status(400).send({message: 'Error',error});
     }
 
