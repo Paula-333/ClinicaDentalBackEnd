@@ -2,10 +2,10 @@
 const {User, Sequelize} = require('../models/index.js');
 const {Op} = Sequelize
 const jwt = require('jsonwebtoken');
-const user = require('../models/user.js');
-const bcrypt = require('bcrypt');
+//const user = require('../models/user.js');
+//const bcrypt = require('bcrypt');
 //const secret = 'migatitobonito';
-const auth = require('../middleware/auth.js');
+//const auth = require('../middleware/auth.js');
 
 
   
@@ -36,7 +36,7 @@ const auth = require('../middleware/auth.js');
 };          
 
 ///////////....:::USUARIOS:::....//////////
-module.exports.users = async (req,res) =>{
+module.exports.allUsers = async (req,res) =>{
     User.findAll({
         include: [{
             model: Cita
@@ -44,7 +44,9 @@ module.exports.users = async (req,res) =>{
     })
         .then(users => res.send(users))
         .catch(error => {
-            console.error(error);
+            res.status(500).send({
+                message: 'Error con los usuarios'
+            })
         })
 }
 ////////////....:::LOGIN:::....////////////
