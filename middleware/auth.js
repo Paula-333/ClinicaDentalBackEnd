@@ -10,7 +10,7 @@ const auth = async(req, res, next) => {
         const user = await User.findByPk(payload.id);
         if (!user) {
             return res.status(401).send({
-                message: 'You are not authorized'
+                message: 'No autorizado'
             })
         }
         req.user = user;
@@ -18,7 +18,7 @@ const auth = async(req, res, next) => {
     } catch (error) {
         console.error(error)
         return res.status(401).send({
-            message: 'You are not authorized',
+            message: 'No autorizado',
             error
         })
     }

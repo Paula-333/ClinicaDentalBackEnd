@@ -1,7 +1,10 @@
 
-const {User} = require('../models/index.js');
-// const bcrypt = require('bcrypt');
-const secret = 'migatitobonito';
+const {User, Sequelize} = require('../models/index.js');
+const {Op} = Sequelize
+const jwt = require('jsonwebtoken');
+const user = require('../models/user.js');
+const bcrypt = require('bcrypt');
+//const secret = 'migatitobonito';
 const auth = require('../middleware/auth.js');
 
 
@@ -14,13 +17,8 @@ const auth = require('../middleware/auth.js');
     try {
         await User.create({
             id: req.body.id,
-            nombre: req.body.nombre,
-            apellidos: req.body.apellidos,
-            nacimiento: req.body.nacimiento,
-            telefono: req.body.telefono,
             email: req.body.email,
             password: req.body.password,
-            dni: req.body.dni,
             role: 'User',
         
     }).then(user => {res.json(user);
@@ -39,30 +37,36 @@ const auth = require('../middleware/auth.js');
 
 ////////////....:::LOGIN:::....////////////
 
-//no tengo idea de si funciona o esta bien
-
-
 module.exports.login = async (req,res,next) => {
     
-    const token = jwt.sign({ 
-        email: 'email', 
-        password: 'password' 
-    }, secret, { expiresIn: 60 * 60 * 24 });
-        res.json({ token: token, message: 'Login correcto' });
-    
-        //validacion (?)
-        jwt.verify(token, secret, function (err, token) {
-             if (err) {
-                return res.status(401).send({
-                    ok: false,
-                   message: 'Token incorrecto'
-                });
-             } else {
-                 req.token = token
-                 next()
-             }
-     })
+    try {
+        const user = await User.findOne({ // SELECT * FROM users WHERE email = ${req.body.email};
+            where: {email: req.body.email}
+        })
+        if (!user) {
+            return res.status(400).send({message: 'Error'});
+        }
+        const isMatch = await bcrypt.compare(req.body.password, user.password)
+
+        if (!isMatch) {
+            return res.status(400).send({message: 'Error'});
+        }
+        const token = jwt.sign({id: user.id}, 
+            'migatitobonito', {
+            //expiresIn: '2y'
+        })
+        res.send({user,token,message: 'Correcto'});
+    } catch (error) {
+        console.error(chalk.red(error))
+        res.status(400).send({message: 'Error',error});
+    }
+
 }
+//profile(req, res) {
+  //  res.send(req.user)
+//}
+//}
+//}
 
 
 ////////////....:::LOGOUT:::....////////////

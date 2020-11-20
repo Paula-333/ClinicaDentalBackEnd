@@ -4,6 +4,7 @@
   "description": "Es un proyecto de backEnd de destion de citas de una clinica dental, donde el cliente se puede registrar, ver sus citas pendientes, crear una cita y anularla.",
   "main": "app.js",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
