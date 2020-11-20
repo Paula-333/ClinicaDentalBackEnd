@@ -46,17 +46,16 @@ module.exports.showAll = async (req, res) => {
 
 
 module.exports.findCita = async (req,res) => {
+
     Cita.findAll({
-   
-        where: {
-            status:'pendiente', idUser: req.params.id
-        }
-    }).then(cita => res.send(cita))
-    .catch(error => {
-        console.error(error);
-        res.status(500).send(error)
+        where: { status: 'Pendiente', idUser: req.params.id },
+    }).then(citas => {
+        res.send(citas);
+    }).catch(error => {
+        res.status(500).send({
+            message: '¡ERROR! No se ha podido mostrar citas pendientes'
+        })
     })
-    
 }
 
 
@@ -75,7 +74,6 @@ module.exports.findCita = async (req,res) => {
 */
 
 ////...::BORRAR CITA::...////
-
 
 module.exports.remove = async (req,res) => {
     await Cita.destroy({
