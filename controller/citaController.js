@@ -32,7 +32,19 @@ module.exports.createCita = async (req, res) => {
 ////...::TODAS LAS CITAS::...////
 
 module.exports.showAll = async (req, res) => {
-      Cita.findAll()
+      try {
+        const c = await Cita.findAll({
+            include: [{
+                model: User,
+                attributes: ['nombre', 'apellidos']
+            }]
+        });
+        res.send(c);
+    } catch (error) {
+        res.status(500).send({
+            error, message: 'Ha habido un problema mostrando las citas'
+        })
+    }
     /*.then(citas => res.send(citas))
     .catch(error => {
         console.error(error);
