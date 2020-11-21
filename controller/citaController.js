@@ -33,57 +33,40 @@ module.exports.createCita = async (req, res) => {
 
 module.exports.showAll = async (req, res) => {
       try {
-        const c = await Cita.findAll({
+        const cita = await Cita.findAll({
             include: [{
                 model: User,
-                attributes: ['nombre', 'apellidos']
+                attributes: ['nombre']
             }]
         });
-        res.send(c);
+        res.send(cita);
     } catch (error) {
         res.status(500).send({
-            error, message: 'Ha habido un problema mostrando las citas'
+            error, message: 'No se han podido mostrar las citas'
         })
     }
-    /*.then(citas => res.send(citas))
-    .catch(error => {
-        console.error(error);
-        res.status(500).send({
-            message: 'Ha habido un problema tratando de recuperar las citas'
-        })
-    })*/
-}
 
+}
 ////...::BUSCAR CITA PENDIENTE::...////
 
 
 module.exports.findCita = async (req,res) => {
 
-     await Cita.findAll({
-        where: { status: 'Pendiente', idUser: req.params.id },
-    }).then(cita=> {
-        res.send(cita);
-    }).catch(error => {
+    try{
+        const cit = await Cita.findAll({
+            include: [{where: { status: 'Pendiente'}}]
+    });
+    res.send(cit)
+
+     
+    } catch(error) {
         res.status(500).send({
             message: '¡ERROR! No se ha podido mostrar citas pendientes'
         })
-    })
+    }
 }
 
 
-/*
-module.exports.findCita = async (req,res) => {
-    Cita.findAll({
-        where: {status:'Pendiente', idUser: req.params.id},
-    }).then(cita => {
-        res.send(cita);
-    }).catch(error => {
-        res.status(error).send({
-            message: 'No se ha podido mostrar citas pendientes'
-        })
-    })
-};
-*/
 
 ////...::BORRAR CITA::...////
 
