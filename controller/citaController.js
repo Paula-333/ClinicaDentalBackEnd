@@ -1,4 +1,6 @@
-const {Cita}= require('../models');
+const {Cita,User,Sequelize}= require('../models');
+const { Op } = Sequelize;
+
 
 
 ////...::CREAR CITA::...////
@@ -33,13 +35,13 @@ module.exports.createCita = async (req, res) => {
 
 module.exports.showAll = async (req, res) => {
       try {
-        const cita = await Cita.findAll({
+        const ci= await Cita.findAll({
             include: [{
                 model: User,
                 attributes: ['nombre']
             }]
         });
-        res.send(cita);
+        res.send(ci);
     } catch (error) {
         res.status(500).send({
             error, message: 'No se han podido mostrar las citas'
