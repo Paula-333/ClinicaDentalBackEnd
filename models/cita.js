@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Cita extends Model {
  
     associate(models) {
-      this.hasOne(models.User);
+      this.belongsTo(models.User);
     }
   };
   Cita.init({
