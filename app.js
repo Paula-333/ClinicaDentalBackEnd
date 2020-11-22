@@ -24,6 +24,8 @@ app.use(express.json());
 
 
 //CORS//
+const cors = require('cors');
+app.use(cors());
 app.use(function(req, res, next) { //para evitar el error CORS
     res.header("Access-Control-Allow-Origin", "*"); //permite hacer peticiones desde todos los orígenes
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); //permite peticiones con las cabeceras enumeradas
